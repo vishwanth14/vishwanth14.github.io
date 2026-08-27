@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Vishwanth Reddy — Backend Developer & M.Tech CSE student at IIIT Hyderabad." />
+  <title>Vishwanth Reddy | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0f1419;
+      --bg-card: #1a2332;
+      --bg-card-hover: #1f2a3d;
+      --border: rgba(255, 255, 255, 0.08);
+      --text: #e8edf4;
+      --text-muted: #8b9cb3;
+      --accent: #3b9eff;
+      --accent-soft: rgba(59, 158, 255, 0.12);
+      --accent-glow: rgba(59, 158, 255, 0.35);
+      --tag-bg: rgba(59, 158, 255, 0.15);
+      --tag-text: #7ec8ff;
+      --radius: 14px;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+      --max-width: 920px;
+      --nav-height: 64px;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: calc(var(--nav-height) + 24px);
+    }
+
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59, 158, 255, 0.18), transparent),
+        radial-gradient(ellipse 60% 40% at 100% 50%, rgba(99, 102, 241, 0.08), transparent);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Navigation */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15, 20, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-inner {
+      width: 100%;
+      max-width: calc(var(--max-width) + 48px);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--text);
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    /* Layout */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 72px 0 56px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tag-text);
+      background: var(--tag-bg);
+      border: 1px solid rgba(59, 158, 255, 0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      margin-bottom: 1.25rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 520px;
+      margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.7rem 1.35rem;
+      border-radius: 10px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 20px var(--accent-glow);
+    }
+
+    .btn-primary:hover {
+      background: #2d8ef0;
+      box-shadow: 0 6px 28px var(--accent-glow);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: rgba(255, 255, 255, 0.15);
+    }
+
+    .btn svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem 1.75rem;
+      box-shadow: var(--shadow);
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      background: var(--bg-card-hover);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .card + .card {
+      margin-top: 1rem;
+    }
+
+    .card-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .card-org {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .card-location {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+    }
+
+    .card ul {
+      padding-left: 1.25rem;
+      color: var(--text-muted);
+    }
+
+    .card li {
+      margin-bottom: 0.45rem;
+    }
+
+    .card li::marker {
+      color: var(--accent);
+    }
+
+    /* Education */
+    .edu-degree {
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+    }
+
+    .edu-status {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #6ee7a0;
+      background: rgba(110, 231, 160, 0.12);
+      border: 1px solid rgba(110, 231, 160, 0.25);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-top: 0.5rem;
+    }
+
+    /* Projects */
+    .project-tech {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 0.78rem;
+      color: var(--tag-text);
+      margin-bottom: 0.6rem;
+    }
+
+    /* Skills */
+    .skill-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .skill-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.75rem 1.25rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-row:first-child {
+      padding-top: 0;
+    }
+
+    .skill-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .skill-label {
+      flex: 0 0 140px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      flex: 1;
+    }
+
+    .skill-tag {
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid rgba(59, 158, 255, 0.2);
+    }
+
+    /* Achievements */
+    .achievement-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .achievement-item::before {
+      content: "★";
+      color: var(--accent);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+
+    /* Picture Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      border-color: rgba(255, 255, 255, 0.12);
+    }
+
+    .gallery-item img {
+      display: block;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .gallery-caption {
+      padding: 1rem 1.1rem;
+    }
+
+    .gallery-caption h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .gallery-caption p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Mobile menu toggle */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text);
+      padding: 0.45rem 0.65rem;
+      cursor: pointer;
+      font-size: 1.25rem;
+      line-height: 1;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 24px;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Mobile & tablet */
+    @media (max-width: 768px) {
+      :root {
+        --nav-height: 56px;
+      }
+
+      .container {
+        padding: 0 16px 60px;
+      }
+
+      .nav-inner {
+        padding: 0 16px;
+        position: relative;
+      }
+
+      .nav-inner nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+      }
+
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(15, 20, 25, 0.97);
+        border-bottom: 1px solid var(--border);
+        padding: 0.5rem 0;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links li {
+        width: 100%;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 0.85rem 1.25rem;
+        font-size: 1rem;
+      }
+
+      .nav-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 40px 0 36px;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+        padding: 0 0.25rem;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 0 0.5rem;
+      }
+
+      .btn {
+        justify-content: center;
+        min-height: 48px;
+        font-size: 1rem;
+      }
+
+      .card {
+        padding: 1.15rem;
+      }
+
+      .card-title {
+        font-size: 1.05rem;
+      }
+
+      .skill-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.6rem;
+      }
+
+      .skill-label {
+        flex: none;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-item img {
+        height: 220px;
+      }
+
+      section {
+        margin-bottom: 2.25rem;
+      }
+    }
+
+    @media (min-width: 769px) and (max-width: 900px) {
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-grid .gallery-item:last-child {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 {
+        font-size: 1.85rem;
+      }
+
+      .hero-badge {
+        font-size: 0.72rem;
+      }
+
+      .card ul {
+        padding-left: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="nav-inner">
+      <span class="nav-logo">VR</span>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#achievements">Achievements</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <section class="hero" id="home">
+      <span class="hero-badge">Backend Developer · M.Tech CSE</span>
+      <h1>Vishwanth Reddy</h1>
+      <p class="hero-subtitle">
+        Building reliable backend systems and exploring systems programming.
+        Currently pursuing M.Tech in Computer Science at IIIT Hyderabad.
+      </p>
+      <div class="hero-actions">
+        <a
+          class="btn btn-primary"
+          href="https://mail.google.com/mail/?view=cm&fs=1&to=vishwanthreddy7947@gmail.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Send email via Gmail"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email
+        </a>
+        <a
+          class="btn btn-outline"
+          href="https://github.com/vishwanth14"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit GitHub profile"
+        >
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-3.795-.735-.405-1.035-1.005-1.305-1.005-1.305-.825-.555.015-.555.015-.555.9.015 1.365.93 1.365.93.795 1.365 2.085.975 2.595.735.075-.57.315-.975.57-1.2-2.415-.27-4.95-1.215-4.95-5.385 0-1.185.42-2.145 1.095-2.895-.105-.27-.45-1.365.105-2.835 0 0 .9-.285 2.955 1.11.855-.24 1.785-.36 2.7-.36.915 0 1.845.12 2.7.36 2.055-1.395 2.955-1.11 2.955-1.11.555 1.47.21 2.565.105 2.835.675.75 1.095 1.71 1.095 2.895 0 4.185-2.55 5.11-4.98 5.385.39.33.735.975.735 1.965 0 1.425-.015 2.565-.015 2.925 0 .315.225.69.84.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          GitHub
+        </a>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2 class="section-title">Education</h2>
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">International Institute of Information Technology Hyderabad</h3>
+            <p class="card-org">Hyderabad, Telangana, India</p>
+          </div>
+        </div>
+        <p class="edu-degree">M.Tech in Computer Science and Engineering</p>
+        <span class="edu-status">Present</span>
+      </article>
+    </section>
+
+    <section id="experience">
+      <h2 class="section-title">Work Experience</h2>
+      <article class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Technical Executive (Backend Developer)</h3>
+            <p class="card-org">Unique Identification Authority of India (Aadhaar)</p>
+          </div>
+        </div>
+        <p class="card-location">Bengaluru, Karnataka, India</p>
+        <ul>
+          <li>Designed a REST API that fetches unique IDs for one field — mobile number — from the database and alerts the resident through SMS if more than ten IDs are linked to their mobile number.</li>
+          <li>Implemented a Kafka messaging system to our program with user information. Now, if someone has over ten IDs linked to their phone, they will get an alert via SMS.</li>
+          <li>This project identifies instances where thousands of mobile numbers are linked with more than hundred unique IDs and restricts it to ten unique IDs, thus reducing fraudulent activities.</li>
+          <li>Built an API which accurately fetches the quality score for the given input image for the three biometric types: face, fingerprint, and iris.</li>
+          <li>Accept input image only if the output score is more than 90%. This project improves the identification of a user by choosing high quality images.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <article class="card">
+        <h3 class="card-title">Interactive Linux Command Shell</h3>
+        <p class="project-tech">C++</p>
+        <ul>
+          <li>Developed a modular POSIX shell from scratch in C++, orchestrating low-level process creation, IPC via pipes, and dynamic background/foreground job control and signal handling.</li>
+          <li>Implemented multi-command pipelines, complex I/O redirection chains, and semicolon command sequencing, alongside custom built-in utilities and a recursive file search engine built entirely from scratch.</li>
+          <li>Designed an advanced interactive terminal interface featuring real-time TAB autocompletion for binaries and paths, persistent multi-session command history up to 20 entries, and up/down arrow-key history traversal.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h3 class="card-title">MovieLib</h3>
+        <p class="project-tech">Java · HTML · CSS · JavaScript · MySQL</p>
+        <ul>
+          <li>Developed a website to simplify the movie ticket booking process. This project helps in increasing user engagement to the website by using user-friendly and responsive web pages.</li>
+          <li>Added three fields — movies list, availability of tickets, and the date of screening — based on which user can book the tickets.</li>
+          <li>Improved the website performance by integrating JSP for displaying interactive content and Servlets to handle user requests, manage sessions and interact with databases.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2 class="section-title">Skills</h2>
+      <article class="card">
+        <div class="skill-rows">
+          <div class="skill-row">
+            <h3 class="skill-label">Languages</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">C++</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Python</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-label">Frameworks</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Spring Boot</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-label">Developer Tools</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Git</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">Bitbucket</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-label">Databases</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">MySQL</span>
+              <span class="skill-tag">MongoDB</span>
+            </div>
+          </div>
+          <div class="skill-row">
+            <h3 class="skill-label">Coursework</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">DSA</span>
+              <span class="skill-tag">OOP</span>
+              <span class="skill-tag">System Design</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section id="gallery">
+      <h2 class="section-title">Picture Gallery</h2>
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img
+            src="images/charminar.jpg"
+            alt="Charminar monument in Hyderabad"
+            loading="lazy"
+            width="640"
+            height="480"
+          />
+          <figcaption class="gallery-caption">
+            <h3>Charminar</h3>
+            <p>Iconic 16th-century mosque and monument in the heart of Old City, Hyderabad.</p>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="images/golconda.jpg"
+            alt="Golconda Fort overlooking Hyderabad"
+            loading="lazy"
+            width="640"
+            height="480"
+          />
+          <figcaption class="gallery-caption">
+            <h3>Golconda Fort</h3>
+            <p>Historic hilltop fortress known for its acoustics and diamond trade legacy.</p>
+          </figcaption>
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="images/buddha.jpg"
+            alt="Buddha statue at Hussain Sagar lake in Hyderabad"
+            loading="lazy"
+            width="640"
+            height="480"
+          />
+          <figcaption class="gallery-caption">
+            <h3>Hussain Sagar</h3>
+            <p>Heart-shaped lake featuring the towering Buddha statue on Gibraltar Rock.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="achievements">
+      <h2 class="section-title">Achievements</h2>
+      <article class="card">
+        <p class="achievement-item">Secured 99.6 percentile in JEE Mains 2018</p>
+      </article>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Vishwanth Reddy. Built with HTML &amp; CSS.</p>
+  </footer>
+
+  <script>
+    const navToggle = document.querySelector(".nav-toggle");
+    const navLinks = document.getElementById("navLinks");
+
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      navToggle.setAttribute("aria-expanded", isOpen);
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        navToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  </script>
+
+</body>
+</html>
