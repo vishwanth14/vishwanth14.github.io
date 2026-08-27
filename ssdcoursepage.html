@@ -1,4 +1,3 @@
-
 <html>
 <head><title>CS6.302 SSD Monsoon 2026</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -160,7 +159,7 @@ border-bottom-color: var(--link-hover);
 }
 
 /* ===== Navigation Bar ===== */
-table:first-of-type tr:nth-child(2) td {
+body > table:first-of-type tr:nth-child(2) td {
 background: var(--nav-bg);
 border-radius: var(--radius);
 padding: 12px 20px;
@@ -169,14 +168,14 @@ text-align: center;
 transition: background var(--transition);
 }
 
-table:first-of-type tr:nth-child(2) td a {
+body > table:first-of-type tr:nth-child(2) td a {
 font-weight: 600;
 padding: 4px 8px;
 border-radius: 4px;
 border-bottom: none;
 }
 
-table:first-of-type tr:nth-child(2) td a:hover {
+body > table:first-of-type tr:nth-child(2) td a:hover {
 background: var(--bg-table-row-hover);
 }
 
@@ -285,7 +284,7 @@ background: linear-gradient(135deg, var(--text-heading), var(--accent));
 background-clip: text;
 }
 
-table:first-of-type tr:first-child td {
+body > table:first-of-type tr:first-child td {
 padding: 30px 20px 10px;
 }
 
@@ -310,14 +309,6 @@ font-size: 0.85em !important;
 .light-text-row {
 color: var(--text-muted);
 }
-
-/* ===== Responsive Design ===== */
-@media (max-width: 1050px) {
-    table {
-        width: 100%;
-        font-size: 16px;
-    }
-  }
 
 /* Tablet */
 @media (max-width: 1050px) {
@@ -363,12 +354,12 @@ font-size: 16px;
         line-height: 1.4;
     }
 
-    table:first-of-type tr:first-child td {
+    body > table:first-of-type tr:first-child td {
         padding: 16px 8px 8px;
     }
 
     /* Nav: hide pipe separators, show pill-style links */
-table:first-of-type tr:nth-child(2) td {
+    body > table:first-of-type tr:nth-child(2) td {
         font-size: 0.85em;
         line-height: 2;
         display: flex;
@@ -380,7 +371,7 @@ table:first-of-type tr:nth-child(2) td {
         padding: 14px 10px;
     }
 
-    table:first-of-type tr:nth-child(2) td a {
+    body > table:first-of-type tr:nth-child(2) td a {
         font-size: 0.8rem;
         padding: 10px 14px;
         min-height: 44px;
@@ -393,14 +384,14 @@ table:first-of-type tr:nth-child(2) td {
         white-space: nowrap;
     }
 
-    table:first-of-type tr:nth-child(2) td hr {
+    body > table:first-of-type tr:nth-child(2) td hr {
         width: 100%;
         margin: 4px 0 0;
         flex-basis: 100%;
     }
 
     /* Content sections */
-    table:first-of-type td {
+    body > table:first-of-type td {
         padding: 8px 4px !important;
     }
 
@@ -416,7 +407,12 @@ table:first-of-type tr:nth-child(2) td {
         margin-bottom: 1em;
     }
 
-    /* Footer links stack vertically */
+    /* Footer links stack vertically, but stay centered on mobile */
+    table:last-of-type td,
+    table:last-of-type p {
+        text-align: center !important;
+    }
+
     table:last-of-type p[align="center"] font,
     table:last-of-type td font {
         display: block;
@@ -435,6 +431,7 @@ table:first-of-type tr:nth-child(2) td {
 }
 
 .theme-toggle {
+        position: absolute;
 top: 10px;
 right: 10px;
         width: 42px;
@@ -444,134 +441,51 @@ right: 10px;
 font-size: 18px;
 }
 
-    /* Grading table (2-col) – compact card rows */
-    table[border="1"]:not(.tg):not(:has(.tg-bobw)) tbody tr {
-        display: flex;
-        flex-wrap: wrap;
-        border-bottom: 1px solid var(--border-light);
-    }
-
-    table[border="1"]:not(.tg):not(:has(.tg-bobw)) tbody tr:last-child {
-        border-bottom: none;
-    }
-
-    table[border="1"]:not(.tg):not(:has(.tg-bobw)) td {
-        flex: 1 1 50%;
-        min-width: 120px;
-        text-align: left !important;
-        padding: 10px 12px !important;
-    }
-
-    table[border="1"]:not(.tg):not(:has(.tg-bobw)) thead tr {
-        display: none;
-    }
-
-    table[border="1"]:not(.tg):not(:has(.tg-bobw)) tbody td:first-child::before {
-        content: "Deliverable: ";
-        font-weight: 700;
-        color: var(--text-heading);
-    }
-
-    table[border="1"]:not(.tg):not(:has(.tg-bobw)) tbody td:last-child::before {
-        content: "Weightage: ";
-        font-weight: 700;
-        color: var(--text-heading);
-    }
-
-    /* Schedule / Lab / Exam tables – card layout */
+    /* Data tables (Grading, Schedule, Lab, Exams) keep the exact same
+       table/row/column structure as on laptop or PC.
+       Wide tables (5 columns: Schedule, Lab, Exams) scroll horizontally.
+       The 2-column Grading table has no extra columns to scroll to, so
+       it stretches to fill the full page width instead, same as on PC. */
     table.tg,
-    table[border="1"].tg,
     table[border="1"]:has(.tg-bobw) {
-        overflow: visible;
-        border: none !important;
-        box-shadow: none;
-        background: transparent;
-    }
-
-    table.tg thead,
-    table[border="1"]:has(.tg-bobw) thead,
-    table.tg tr:has(th),
-    table[border="1"]:has(.tg-bobw) tr:has(th) {
-        display: none;
-    }
-
-    table.tg tbody tr,
-    table[border="1"]:has(.tg-bobw) tbody tr {
         display: block;
-        margin-bottom: 16px;
-        border: 1px solid var(--border-color) !important;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
-        background: var(--bg-secondary);
-        overflow: hidden;
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
-    table.tg tbody tr:hover td,
-    table[border="1"]:has(.tg-bobw) tbody tr:hover td {
-        background: var(--bg-table-row) !important;
+    table.tg th, table.tg td,
+    table[border="1"]:has(.tg-bobw) th,
+    table[border="1"]:has(.tg-bobw) td {
+        white-space: nowrap;
+        padding: 8px 10px !important;
+        font-size: 0.85em;
     }
 
-    table.tg tbody td,
-    table[border="1"]:has(.tg-bobw) tbody td,
-    .tg-c3ow,
-    .tg-8d8j {
+    /* Grading table: fill the entire page width, columns split evenly */
+    table[border="1"]:not(.tg):not(:has(.tg-bobw)) {
+        table-layout: fixed;
+        width: 100% !important;
+        display: table !important;
+    }
+
+    table[border="1"]:not(.tg):not(:has(.tg-bobw)) th,
+    table[border="1"]:not(.tg):not(:has(.tg-bobw)) td {
+        padding: 10px 8px !important;
+        font-size: 0.9em;
+        display: table-cell !important;
+    }
+
+    /* Gentle hint that there are more columns to the side */
+    table.tg tr:first-child td::after,
+    table[border="1"]:has(.tg-bobw) tr:first-child td::after {
+        content: "\21e0 scroll to see all columns \21e2";
         display: block;
-        text-align: left !important;
-        border: none !important;
-        border-bottom: 1px solid var(--border-light) !important;
-        padding: 10px 14px !important;
         white-space: normal;
-        word-break: break-word;
-        font-size: 0.95em;
-    }
-
-    table.tg tbody td:last-child,
-    table[border="1"]:has(.tg-bobw) tbody td:last-child {
-        border-bottom: none !important;
-    }
-
-    table.tg tbody td::before,
-    table[border="1"]:has(.tg-bobw) tbody td::before {
-        display: block;
-        font-weight: 700;
-        font-size: 0.75em;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        color: var(--accent);
-        margin-bottom: 4px;
-    }
-
-    table.tg tbody td:nth-child(1)::before { content: "Lecture No."; }
-    table.tg tbody td:nth-child(2)::before { content: "Date"; }
-    table.tg tbody td:nth-child(3)::before { content: "Day"; }
-    table.tg tbody td:nth-child(4)::before { content: "Lecture Name"; }
-    table.tg tbody td:nth-child(5)::before { content: "Material"; }
-
-    table[border="1"]:has(.tg-bobw) tbody td:nth-child(1)::before { content: "S.No"; }
-    table[border="1"]:has(.tg-bobw) tbody td:nth-child(2)::before { content: "Type"; }
-    table[border="1"]:has(.tg-bobw) tbody td:nth-child(3)::before { content: "Announcement"; }
-    table[border="1"]:has(.tg-bobw) tbody td:nth-child(4)::before { content: "Due Date"; }
-    table[border="1"]:has(.tg-bobw) tbody td:nth-child(5)::before { content: "Material"; }
-
-    /* Lab table (4th table on page) */
-    table.tg:nth-of-type(4) tbody td:nth-child(1)::before { content: "Lab No."; }
-    table.tg:nth-of-type(4) tbody td:nth-child(4)::before { content: "Lab Session"; }
-
-    /* Section title rows inside tables */
-    table.tg tr:first-child td,
-    table[border="1"]:has(.tg-bobw) tr:first-child td {
-        display: block;
-        border: none !important;
-        background: var(--bg-secondary) !important;
-        padding: 12px 14px !important;
-        margin-bottom: 12px;
-        border-radius: var(--radius);
-        box-shadow: var(--shadow-sm);
-    }
-
-    table.tg tr:first-child td::before,
-    table[border="1"]:has(.tg-bobw) tr:first-child td::before {
-        display: none;
+        font-size: 0.7em;
+        font-weight: 400;
+        color: var(--text-muted);
+        margin-top: 4px;
     }
 
     /* Spacer tables – reduce padding */
@@ -606,16 +520,17 @@ font-size: 18px;
         font-size: 1.2em;
     }
 
-    table:first-of-type tr:nth-child(2) td a {
+    body > table:first-of-type tr:nth-child(2) td a {
         font-size: 0.75rem;
         padding: 8px 10px;
         white-space: normal;
         text-align: center;
     }
 
-    table.tg tbody td,
-    table[border="1"]:has(.tg-bobw) tbody td {
-        padding: 8px 10px !important;
+    table[border="1"] th,
+    table[border="1"] td {
+        padding: 6px 8px !important;
+        font-size: 0.8em;
     }
 }
 
@@ -670,8 +585,7 @@ return i;
 
 (function() {
 const savedTheme = localStorage.getItem('ssd-theme');
-const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+const theme = savedTheme || 'light';
 document.documentElement.setAttribute('data-theme', theme);
 
 const btn = document.createElement('button');
